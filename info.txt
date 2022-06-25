@@ -1,7 +1,4 @@
-import React from 'react';
-// import './App.css';
-
-function App() {const cardsCreating = ( suit: string ): any => {
+const cardsCreating = ( suit: string ): any => {
     let cards: { suit: string, name: string, value: number }[] = [];
     let name: string = '';
 
@@ -64,12 +61,3 @@ const cardsMixed = cardsPreparing(cards);
 
 console.clear();
 console.log(cardsMixed);
-	
-  return (
-    <div className="App">
-		OK
-    </div>
-  );
-}
-
-export default App;
