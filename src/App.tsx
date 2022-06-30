@@ -1,7 +1,8 @@
 import React from 'react';
 // import './App.css';
 
-function App() {const cardsCreating = ( suit: string ): any => {
+function App() {
+const cardsCreating = ( suit: string ): any => {
     let cards: { suit: string, name: string, value: number }[] = [];
     let name: string = '';
 
