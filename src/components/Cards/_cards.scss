@@ -1,0 +1,26 @@
+.cards {
+	position: relative;
+
+	&__items {
+		list-style-type: none;
+	}
+	
+	&__item {
+		display: inline-block;
+		position: absolute;
+		cursor: pointer;
+		animation-name: fadeIn;
+		animation-duration: 1s;
+		animation-fill-mode: forwards;
+		opacity: 0;
+	}
+	
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+}

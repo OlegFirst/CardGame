@@ -1,0 +1,26 @@
+.card {
+	position: relative;
+	@include flex();
+	background-color: white;
+	border: 1px solid $color-black;
+	border-radius: 4px;
+	width: 150px;
+	height: 200px;
+	padding: 10px;
+	
+	&__top {
+		position: absolute;
+		left: 10px;
+		top: 10px;
+	}
+	
+	&__center {
+		font-size: 2rem;
+	}
+	
+	&__bottom {
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+	}
+}

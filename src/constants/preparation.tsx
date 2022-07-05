@@ -1,13 +1,18 @@
-type Card = {
-  suit: string;
-  name: string;
-}
+// type Card = {
+  // suit: string;
+  // name: string;
+// }
+
+interface Card {
+    suit: string,
+    name: string
+};
 
 const PIPS = [
     'Hearts',
     'Daimonds',
-    'Spades',
-    'Clubs'
+    'Clubs',
+	'Spades'
 ];
 
 const NAMED_CARDS = ["J", "D", "K", "A"];
@@ -50,5 +55,3 @@ export const getCards = () => {
 	
 	return result;
 };
-
-// console.log(getCards())

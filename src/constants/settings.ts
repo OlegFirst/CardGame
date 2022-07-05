@@ -1,4 +1,4 @@
-export interface Card {
+export interface CardInterface {
     suit: string,
     name: string
 };

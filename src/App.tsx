@@ -1,15 +1,12 @@
 import React from 'react';
-// import './App.css';
+import './scss/index.scss';
 
-import { getCards } from './constants/preparation';
+import Cards from './components/Cards/Cards';
 
 function App() {
-	// console.clear();
-	console.dir(getCards());
-
 	return (
 		<div className="App">
-			OK
+			<Cards />
 		</div>
 	);
 }
