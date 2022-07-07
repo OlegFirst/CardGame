@@ -1,12 +1,16 @@
 import React from 'react';
 import './scss/index.scss';
 
-import Cards from './components/Cards/Cards';
+import { getCards } from './constants/preparation';
+
+// import Cards from './components/Cards/Cards';
 
 function App() {
+	getCards();
+
 	return (
 		<div className="App">
-			<Cards />
+			
 		</div>
 	);
 }

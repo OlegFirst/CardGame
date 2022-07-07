@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { CardInterface } from '../../constants/settings';
 import Card from '../_commonComponents/Card/Card';
-import { getCards } from '../../constants/preparation';
+// import { getCards } from '../../constants/preparation';
 
 const Cards = () => {
 	const [cardList, setCardList] = useState([...getCards()]);
