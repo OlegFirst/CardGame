@@ -1,13 +1,10 @@
 import { useEffect, useState, memo } from 'react';
 
-import { CardInterface } from '../../../constants/settings';
-
-const PIPS_COLOR_MAP = {
-	'Hearts': 'red',
-	'Daimonds': 'red',
-	'Clubs': 'black',
-	'Spades': 'black',
-};
+import { 
+	CardInterface,
+	PIPS_COLOR_MAP,
+	PIPS_SUIT_MAP
+} from '../../../constants/settings';
 
 const Card = (props: CardInterface) => {
 	const {
@@ -15,49 +12,21 @@ const Card = (props: CardInterface) => {
 		name
 	} = props;
 	
-	// const [cardStyle, setCardStyle] = useState({});
-	
-	// useEffect(() => {
-		// if (suit === 'Hearts' || suit === 'Daimonds') {
-			// setCardStyle({ color: 'red' });
-		// } else {
-			// setCardStyle({ color: 'black' });
-		// }
-	// }, []);
-	
-	// const style = {
-		// color: PIPS_COLOR_MAP[suit]
-	// };	
+	const style = {
+		color: PIPS_COLOR_MAP[suit]
+	};
 	
 	return (
 		<section
 			className="card"
-			// style={style}
+			style={style}
 		>
 			<div className="card__top">
 				{name}
 			</div>
 			
-			<div className="card__center">
-				{ suit === 'Hearts'
-					&&
-					<span>&#9829;</span>
-				}
-				
-				{ suit === 'Daimonds'
-					&&
-					<span>&#9830;</span>
-				}
-				
-				{ suit === 'Clubs'
-					&&
-					<span>&#9831;</span>
-				}
-				
-				{ suit === 'Spades'
-					&&
-					<span>&#9828;</span>
-				}
+			<div className="card__center">				
+				<span dangerouslySetInnerHTML={{__html: PIPS_SUIT_MAP[suit]}}></span>
 			</div>
 			
 			<div className="card__bottom">

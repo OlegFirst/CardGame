@@ -3,14 +3,10 @@ import './scss/index.scss';
 
 import Cards from './components/Cards/Cards';
 
-import { getCards } from './constants/preparation1';
-
 function App() {
-	getCards();
-	
 	return (
 		<div className="App">
-			
+			<Cards />
 		</div>
 	);
 }

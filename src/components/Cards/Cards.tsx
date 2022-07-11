@@ -4,15 +4,23 @@ import { CardInterface } from '../../constants/settings';
 import Card from '../_commonComponents/Card/Card';
 import { getCards } from '../../constants/preparation';
 
+const cardList = getCards();
+
 const Cards = () => {
-	const [cardList, setCardList] = useState([...getCards()]);
+	const cardListRemoved = {};
+	// const [cardList, setCardList] = useState([...getCards()]);
+	// console.dir(cardList);
 	
 	const cardClickHandler = (index: number) => {
-		setCardList(
-			cardList.filter((item, itemIndex) => {
-				return index !== itemIndex;
-			})
-		);
+		// const property = 'card' + index;
+		// console.log(cardListRemoved.hasOwnProperty('card' + index));
+		// cardListRemoved[property] = true;
+		
+		// // setCardList(
+			// // cardList.filter((item, itemIndex) => {
+				// // return index !== itemIndex;
+			// // })
+		// // );
 	};
 	
 	const cardListElements = cardList.map((item, index) => {
@@ -49,29 +57,3 @@ const Cards = () => {
 };
 
 export default Cards;
-
-
-// getColor = s => s.match('Heart}Diamonds') ? 'red' : blck''
-
-// Clear code
-
-// Strategy pattern
-// const obj = {
-	// Hearts: '&value'
-// }
-
-
-
-// splice mutue
-// slice ne mutue
-
-// [1:30 PM] Serhii Bilyk
-    // const list = [1, 2, 3, 4,5]
-// const removeElement = (list: number[], index: number) => {​
-// const head = list.slice(0, 2) // [1,2]
-// const tail = list.slice(index + 1); [4]
-    // console.log({​head, tail}​)
-// return head.concat(tail)
-// }​
-// const result = removeElement(list, 2)
-// console.log({​list, result}​)

@@ -1,19 +1,7 @@
-// type Card = {
-  // suit: string;
-  // name: string;
-// }
-
-interface Card {
-    suit: string,
-    name: string
-};
-
-const PIPS = [
-    'Hearts',
-    'Daimonds',
-    'Clubs',
-	'Spades'
-];
+import {
+	CardInterface,
+	PIPS_COLOR_MAP
+} from './settings';
 
 const NAMED_CARDS = ["J", "D", "K", "A"];
 
@@ -22,36 +10,55 @@ const CARD_SYMBOLS: string[] = [
   ...NAMED_CARDS
 ];
 
-function shuffle(array: number[]) {
-  var tmp, current, top = array.length;
-  
-  if(top) {
-    while(--top) {
-      current = Math.floor(Math.random() * (top + 1));
-      tmp = array[current];
-      array[current] = array[top];
-      array[top] = tmp;
-    }
-  }
-  
-  return array;
-}
+const removeItemFromArray = (items: CardInterface[], itemIndex: number) => {
+	const head = items.slice(0, itemIndex);
+	const rest = items.slice(itemIndex + 1, items.length);	
+	const res = head.concat(rest);
+	
+	return res;
+};
 
-const CARD_PACK = PIPS.reduce((pack: Card[], suit: string) => [
-    ...CARD_SYMBOLS.reduce((previous, name) => {
-        return [...previous, { suit, name }]
-    }, pack)
-], []);
+const cardsCreate = () => (
+	Object.keys(PIPS_COLOR_MAP).reduce <CardInterface[]> ((cards, suit) => (
+		cards.concat(
+			CARD_SYMBOLS.reduce <CardInterface[]> (
+			(suitCards, name) => suitCards.concat({
+				suit,
+				name 
+			}), [])
+		)
+	), [])
+);
 
-const ORDERED_CARD_INDEXES = CARD_PACK.map((_, index) => index);
+let res: CardInterface[] = [];
+const mixingCards = (cards: CardInterface[]): any => {
+	let index = Math.floor(Math.random() * cards.length);
+    let newArray = removeItemFromArray(cards, index);
+	res.push(cards[index]);
+	
+	if (newArray.length === 0) {
+		return [];
+	} else {
+		return mixingCards(newArray);
+	}	
+};
+
+const arrayTest = (array: any) => {
+	const res = array.slice(0, 1);
+	return res;
+};
+
+const recur = (array: []): any => {
+	if (array.length <= 1) {
+		return '_';
+	} else {
+		return '_' + recur(array);
+	}
+};
 
 export const getCards = () => {
-	const shuffledIndexes = shuffle([...ORDERED_CARD_INDEXES]);
-	const result: Card[] = [];
+	const cards = cardsCreate();
+	mixingCards(cards);
 	
-	shuffledIndexes.forEach((shuffledIndex, currentIndex) => {
-		result[currentIndex] = {...CARD_PACK[shuffledIndex]};
-	});
-	
-	return result;
+	return res;
 };
