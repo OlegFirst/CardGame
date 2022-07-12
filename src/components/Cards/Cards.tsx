@@ -2,20 +2,36 @@ import { useState } from 'react';
 
 import { CardInterface } from '../../constants/settings';
 import Card from '../_commonComponents/Card/Card';
-// import { getCards } from '../../constants/preparation';
+import { getCards } from '../../constants/preparation';
+
+const cardList = getCards();
 
 const Cards = () => {
-	const [cardList, setCardList] = useState([...getCards()]);
+	const cardListRemoved = {};
+	const [one, setOne] = useState(0);
+	// const [cardList, setCardList] = useState([...getCards()]);
+	// console.dir(cardList);
 	
 	const cardClickHandler = (index: number) => {
-		setCardList(
-			cardList.filter((item, itemIndex) => {
-				return index !== itemIndex;
-			})
-		);
+		setOne((prev: any) =>  {
+			console.log(prev)
+
+			return '14';
+		});
+
+
+		// const property = 'card' + index;
+		// console.log(cardListRemoved.hasOwnProperty('card' + index));
+		// cardListRemoved[property] = true;
+		
+		// // setCardList(
+			// // cardList.filter((item, itemIndex) => {
+				// // return index !== itemIndex;
+			// // })
+		// // );
 	};
 	
-	const cardListElements = cardList.map((item, index) => {
+	const cardListElements = cardList.map((item: CardInterface, index: number) => {
 		const { suit, name } = item;
 		const key = suit + name;
 		const style = {
