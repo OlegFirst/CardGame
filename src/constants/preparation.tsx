@@ -30,6 +30,7 @@ const cardsCreate = () => (
 	), [])
 );
 
+// To DO: change mutation
 let res: CardInterface[] = [];
 const mixingCards = (cards: CardInterface[]): any => {
 	let index = Math.floor(Math.random() * cards.length);

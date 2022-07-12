@@ -7,25 +7,22 @@ import { getCards } from '../../constants/preparation';
 const cardList = getCards();
 
 const Cards = () => {
-	const cardListRemoved = {};
-	// const [cardList, setCardList] = useState([...getCards()]);
-	// console.dir(cardList);
+	const [removedCards, setRemovedCards] = useState({});
 	
 	const cardClickHandler = (index: number) => {
-		// const property = 'card' + index;
-		// console.log(cardListRemoved.hasOwnProperty('card' + index));
-		// cardListRemoved[property] = true;
-		
-		// // setCardList(
-			// // cardList.filter((item, itemIndex) => {
-				// // return index !== itemIndex;
-			// // })
-		// // );
+		setRemovedCards(prev => ({
+			...prev,
+			[index]: true
+		}));
 	};
 	
-	const cardListElements = cardList.map((item, index) => {
+	const cardListElements = cardList.map((item, index: number) => {
+		if (removedCards.hasOwnProperty(index)) {
+			return false;
+		}
+		
 		const { suit, name } = item;
-		const key = suit + name;
+		const key = suit + index;
 		const style = {
 			left: index * 2 + 'px',
 			top: index * 2 + 'px',
