@@ -44,19 +44,6 @@ const mixingCards = (cards: CardInterface[]): any => {
 	}	
 };
 
-const arrayTest = (array: any) => {
-	const res = array.slice(0, 1);
-	return res;
-};
-
-const recur = (array: []): any => {
-	if (array.length <= 1) {
-		return '_';
-	} else {
-		return '_' + recur(array);
-	}
-};
-
 export const getCards = () => {
 	const cards = cardsCreate();
 	mixingCards(cards);
