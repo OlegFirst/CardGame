@@ -65,3 +65,48 @@ export const getCards = () => {
 	
 	return result;
 };
+
+// [Tuesday 1:35 PM] Serhii Bilyk
+// export interface CardInterface {
+//     suit: Suits,
+//     name: Values
+// };
+
+// type Suits = 'Hearts' | 'Daimonds' | 'Clubs' | 'Spades'
+
+// type Values = '2' | '3' | 'J' | 'D' | 'K' | 'A'
+
+// type SuitColor = 'red' | 'black'
+
+// type Permutation<T extends string> = `${Values} ${T}`
+
+// type HTMLEntity = `&#${number}${number}${number}${number};`;
+
+// type StyleOptions<T> = Record<Suits, T>
+
+// export const PIPS_COLOR_MAP: StyleOptions<SuitColor> = {
+//     'Hearts': 'red',
+//     'Daimonds': 'red',
+//     'Clubs': 'black',
+//     'Spades': 'black'
+// };
+
+// export const PIPS_SUIT_MAP: StyleOptions<HTMLEntity> = {
+//     'Hearts': '&#9829;',
+//     'Daimonds': '&#9830;',
+//     'Clubs': '&#9831;',
+//     'Spades': '&#9831;',
+// };
+
+// [Tuesday 1:40 PM] Serhii Bilyk
+// const mixingCards = (cards: CardInterface[], res: CardInterface[] = []): any => {
+//     const index = Math.floor(Math.random() * cards.length);
+//     const newArray = removeItemFromArray(cards, index);
+
+//     if (newArray.length === 0) {
+//         return res;
+//     } else {
+//         return mixingCards(newArray, [...res, cards[index]]);
+//     }
+// };
+

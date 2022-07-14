@@ -3,22 +3,24 @@ export interface CardInterface {
     name: string
 };
 
-type styleOptions = {
+export interface CardComponentInterface {
+    suit: string,
+    name: string,
+	isHide: boolean
+};
+
+type StyleOptions = {
 	[key: string]: string
 };
 
-type styleOptions1 = {
-	[key: string]: number
-};
-
-export const PIPS_COLOR_MAP: styleOptions = {
+export const PIPS_COLOR_MAP: StyleOptions = {
 	'Hearts': 'red',
 	'Daimonds': 'red',
 	'Clubs': 'black',
 	'Spades': 'black'
 };
 
-export const PIPS_SUIT_MAP: styleOptions = {
+export const PIPS_SUIT_MAP: StyleOptions = {
 	'Hearts': '&#9829;',
 	'Daimonds': '&#9830;',
 	'Clubs': '&#9831;',
