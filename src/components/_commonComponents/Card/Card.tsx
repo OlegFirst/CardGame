@@ -1,16 +1,21 @@
 import { useEffect, useState, memo } from 'react';
 
 import { 
-	CardInterface,
+	CardComponentInterface,
 	PIPS_COLOR_MAP,
 	PIPS_SUIT_MAP
 } from '../../../constants/settings';
 
-const Card = (props: CardInterface) => {
+const Card = (props: CardComponentInterface) => {
 	const {
 		suit,
-		name
+		name,
+		isHide
 	} = props;
+	
+	if (isHide) {
+		return null;
+	}
 	
 	const style = {
 		color: PIPS_COLOR_MAP[suit]
