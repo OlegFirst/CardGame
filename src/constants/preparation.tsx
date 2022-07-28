@@ -30,23 +30,19 @@ const cardsCreate = () => (
 	), [])
 );
 
-// To DO: change mutation
-let res: CardInterface[] = [];
-const mixingCards = (cards: CardInterface[]): any => {
-	let index = Math.floor(Math.random() * cards.length);
-    let newArray = removeItemFromArray(cards, index);
-	res.push(cards[index]);
-	
-	if (newArray.length === 0) {
-		return [];
-	} else {
-		return mixingCards(newArray);
-	}	
+const mixingCards = (cards: CardInterface[], res: CardInterface[] = []): any => {
+    const index = Math.floor(Math.random() * cards.length);
+    const newArray = removeItemFromArray(cards, index);
+
+    if (newArray.length === 0) {
+        return res;
+    } else {
+        return mixingCards(newArray, [...res, cards[index]]);
+    }
 };
 
 export const getCards = () => {
 	const cards = cardsCreate();
-	mixingCards(cards);
 	
-	return res;
+	return mixingCards(cards);
 };

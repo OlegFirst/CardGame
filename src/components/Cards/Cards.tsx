@@ -16,11 +16,7 @@ const Cards = () => {
 		}));
 	};
 	
-	const cardListElements = cardList.map((item, index: number) => {
-		if (removedCards.hasOwnProperty(index)) {
-			return false;
-		}
-		
+	const cardListElements = cardList.map((item: CardInterface, index: number) => {		
 		const { suit, name } = item;
 		const key = suit + index;
 		const style = {
@@ -39,6 +35,7 @@ const Cards = () => {
 				<Card
 					suit={suit}
 					name={name}
+					isHide={index in removedCards}
 				/>
 			</li>
 		)
