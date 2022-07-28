@@ -1,21 +1,14 @@
 import { useState } from 'react';
-
 import { CardInterface } from '../../constants/settings';
 import Card from '../_commonComponents/Card/Card';
-import { getCards } from '../../constants/preparation';
 
-const cardList = getCards();
+interface CardsProps {
+	cardList: CardInterface[],
+	removedCards: Object,
+	cardClick: (index: number) => void
+};
 
-const Cards = () => {
-	const [removedCards, setRemovedCards] = useState({});
-	
-	const cardClickHandler = (index: number) => {
-		setRemovedCards(prev => ({
-			...prev,
-			[index]: true
-		}));
-	};
-	
+const Cards = ({ cardList, removedCards, cardClick }: CardsProps) => {	
 	const cardListElements = cardList.map((item: CardInterface, index: number) => {		
 		const { suit, name } = item;
 		const key = suit + index;
@@ -30,7 +23,7 @@ const Cards = () => {
 				className="cards__item"
 				key={key}
 				style={style}
-				onClick={() => cardClickHandler(index)}
+				onClick={() => cardClick(index)}
 			>
 				<Card
 					suit={suit}
