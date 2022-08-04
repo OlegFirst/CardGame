@@ -6,37 +6,37 @@ import Button from '../Button/Button';
 
 import { getCards } from '../../constants/preparation';
 const cardList = getCards();
-let currentCardIndex = cardList.length;
 
 const MainPage = () => {
 	const [removedCards, setRemovedCards] = useState({});
+	const [currentIndex, setCurrentIndex] = useState(cardList.length);
 	const [inPlayCards, setInPlayCards] = useState({
 		firstIndex: 0,
 		lastIndex: 0
 	});
 	
-	const clickHandler = () => {
-		if (currentCardIndex < 0) {
+	const clickHandler = (limit: number) => {
+		if (currentIndex < 0) {
 			return;
 		}
 		
-		console.log(currentCardIndex)		
-		const index = currentCardIndex;
+		const removedIndexes = Array(limit).fill(currentIndex).map((defaultIndex, index) => defaultIndex + index);
+		const removedCards = removedIndexes.reduce((result, removedIndex) => ({ 
+			...result,
+			[removedIndex]: true
+		}), {}); 
 		
 		setRemovedCards(prev => ({
 			...prev,
-			[index]: true,
-			[index + 1]: true,
-			[index + 2]: true,
-			[index + 3]: true
+			...removedCards
 		}));
 		
 		setInPlayCards({
-			firstIndex: currentCardIndex,
-			lastIndex: currentCardIndex - 4
+			firstIndex: currentIndex,
+			lastIndex: currentIndex - limit
 		});
 		
-		currentCardIndex -= 4;
+		setCurrentIndex((prev: number) => prev - limit);
 	};
 	
 	const cardClickHandler = (index: number) => {
@@ -55,11 +55,12 @@ const MainPage = () => {
 			/>
 			
 			<InPlay
+				cardList={cardList}
 				inPlayCards={inPlayCards}
 			/>
 			
 			<Button
-				click={clickHandler}
+				click={() => clickHandler(3)}
 			/>
 		</section>
 	);

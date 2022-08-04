@@ -1,16 +1,42 @@
 import Card from '../_commonComponents/Card/Card';
+import Cards from '../Cards/Cards';
+
+import { 
+	CardInterface
+} from '../../constants/settings';
 
 interface InPlayProps {
-	inPlayCards: Object
+	inPlayCards: {
+		firstIndex: number,
+		lastIndex: number
+	},
+	cardList: CardInterface[]
 };
 
-const InPlay = ({ inPlayCards }: InPlayProps) => {
+const InPlay = ({ cardList, inPlayCards }: InPlayProps) => {
 	console.log(inPlayCards)
 	
 	return (
-		<section className="in-play">
+		<section className="in-play">		
 			<ul className="in-play__items">
-				
+				{ cardList.map((item: CardInterface, index: number) => {
+					const { suit, name } = item;
+					const key = suit + index;
+					const isHide = index > inPlayCards.firstIndex || index < inPlayCards.lastIndex
+					
+					return (
+						<li
+							className="in-play__item"
+							key={key}
+						>
+							<Card
+								suit={suit}
+								name={name}
+								isHide={isHide}
+							/>
+						</li>
+					)
+				}) }
 			</ul>
 		</section>
 	);

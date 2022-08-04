@@ -1,0 +1,8 @@
+.in-play {
+	color: red;
+
+	&__items {
+		@include flex();
+		list-style-type: none;
+	}
+}
