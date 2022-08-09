@@ -3,32 +3,39 @@ import { useState } from 'react';
 import Cards from '../Cards/Cards';
 import InPlay from '../InPlay/InPlay';
 import Button from '../Button/Button';
+import PopUp from '../_commonComponents/PopUp/PopUp';
 
 import { getCards } from '../../constants/preparation';
+
 const cardList = getCards();
+let currentIndex = cardList.length;
 
 const MainPage = () => {
 	const [removedCards, setRemovedCards] = useState({});
-	const [currentIndex, setCurrentIndex] = useState(cardList.length);
 	const [inPlayCards, setInPlayCards] = useState({
 		firstIndex: 0,
 		lastIndex: 0
 	});
+	const [isGameEnd, setIsGameEnd] = useState(false);
+	
+	const cardIndexesForRemove = (limit: number) => Array(limit).fill(currentIndex - limit).map((defaultIndex, index) => defaultIndex + index);
+	const cardsForRemove = (indexes: number[]) => indexes.reduce((result, removedIndex) => ({ 
+		...result,
+		[removedIndex]: true
+	}), {});
 	
 	const clickHandler = (limit: number) => {
 		if (currentIndex < 0) {
+			setIsGameEnd(true);
 			return;
 		}
 		
-		const removedIndexes = Array(limit).fill(currentIndex).map((defaultIndex, index) => defaultIndex + index);
-		const removedCards = removedIndexes.reduce((result, removedIndex) => ({ 
-			...result,
-			[removedIndex]: true
-		}), {}); 
+		const indexes = cardIndexesForRemove(limit);
+		const cards = cardsForRemove(indexes);
 		
 		setRemovedCards(prev => ({
 			...prev,
-			...removedCards
+			...cards
 		}));
 		
 		setInPlayCards({
@@ -36,7 +43,7 @@ const MainPage = () => {
 			lastIndex: currentIndex - limit
 		});
 		
-		setCurrentIndex((prev: number) => prev - limit);
+		currentIndex -= limit;
 	};
 	
 	const cardClickHandler = (index: number) => {
@@ -44,6 +51,10 @@ const MainPage = () => {
 			...prev,
 			[index]: true
 		}));
+	};
+	
+	const onClickHandler = () => {
+		setIsGameEnd(false);
 	};
 	
 	return (
@@ -60,10 +71,16 @@ const MainPage = () => {
 			/>
 			
 			<Button
-				click={() => clickHandler(3)}
+				click={() => clickHandler(4)}
 			/>
+			
+			{ isGameEnd &&
+				<PopUp
+					onClick={onClickHandler}
+				/>
+			}
 		</section>
 	);
 }
 
-export default MainPage
+export default MainPage;

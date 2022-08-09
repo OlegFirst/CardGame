@@ -14,7 +14,9 @@ interface InPlayProps {
 };
 
 const InPlay = ({ cardList, inPlayCards }: InPlayProps) => {
-	console.log(inPlayCards)
+	if (inPlayCards.firstIndex === 0 && inPlayCards.lastIndex === 0) {
+		return null;
+	}
 	
 	return (
 		<section className="in-play">		
