@@ -1,5 +1,8 @@
 .cards {
-	position: relative;
+	position: absolute;
+	transform: scale(0.7, 0.7);
+	left: 40px;
+	top: 40px;
 
 	&__items {
 		list-style-type: none;

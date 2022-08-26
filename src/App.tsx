@@ -1,13 +1,13 @@
 import React from 'react';
 import './scss/index.scss';
 
-import Cards from './components/Cards/Cards';
+import MainPage from './components/MainPage/MainPage';
 
 function App() {
 	return (
-		<div className="App">
-			<Cards />
-		</div>
+		<section className="App">
+			<MainPage />
+		</section>
 	);
 }
 
