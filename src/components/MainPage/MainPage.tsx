@@ -55,7 +55,7 @@ const MainPage = () => {
 	
 	const onClickHandler = () => {
 		setIsGameEnd(false);
-	};
+	};	
 	
 	return (
 		<section className="main-page">
@@ -71,7 +71,7 @@ const MainPage = () => {
 			/>
 			
 			<Button
-				click={() => clickHandler(4)}
+				onClick={() => clickHandler(4)}
 			/>
 			
 			{ isGameEnd &&

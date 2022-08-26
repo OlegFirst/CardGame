@@ -8,36 +8,34 @@ interface CardsProps {
 	cardClick: (index: number) => void
 };
 
-const Cards = ({ cardList, removedCards, cardClick }: CardsProps) => {	
-	const cardListElements = cardList.map((item: CardInterface, index: number) => {		
-		const { suit, name } = item;
-		const key = suit + index;
-		const style = {
-			left: index * 2 + 'px',
-			top: index * 2 + 'px',
-			animationDelay: index / 40 + 's'
-		};
-		
-		return (
-			<li
-				className="cards__item"
-				key={key}
-				style={style}
-				onClick={() => cardClick(index)}
-			>
-				<Card
-					suit={suit}
-					name={name}
-					isHide={index in removedCards}
-				/>
-			</li>
-		)
-	});
-	
+const Cards = ({ cardList, removedCards, cardClick }: CardsProps) => {
 	return (
 		<section className="cards">
 			<ul className="cards__items">
-				{cardListElements}
+				{ cardList.map((item: CardInterface, index: number) => {
+					const { suit, name } = item;
+					const key = suit + index;
+					const style = {
+						left: index * 2 + 'px',
+						top: index * 2 + 'px',
+						animationDelay: index / 40 + 's'
+					};
+					
+					return (
+						<li
+							className="cards__item"
+							key={key}
+							style={style}
+							onClick={() => cardClick(index)}
+						>
+							<Card
+								suit={suit}
+								name={name}
+								isHide={index in removedCards}
+							/>
+						</li>
+					)
+				})}
 			</ul>			
 		</section>
 	);

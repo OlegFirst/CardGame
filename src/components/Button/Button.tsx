@@ -1,12 +1,12 @@
 interface ButtonProps {
-	click: () => void
+	onClick: () => void
 };
 
-const Button = ({ click }:  ButtonProps) => {
+const Button = ({ onClick }:  ButtonProps) => {
 	return (
 		<button
 			className="button"
-			onClick={click}
+			onClick={onClick}
 		>
 			Start
 		</button>
